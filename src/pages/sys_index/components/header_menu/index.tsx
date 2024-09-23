@@ -12,7 +12,7 @@ const HeaderMenu = () => {
 
     return (
         <div className='flex items-center px-4'>
-            <Menu className='flex-1' mode="horizontal" selectedKeys={[currentPath]}>
+            <Menu className='flex-1 overflow-hidden' mode="horizontal" selectedKeys={[currentPath]}>
                 <Menu.Item key="/index/home" icon={<HomeOutlined />}>
                     <Link to="/">智能化预警系统</Link>
                 </Menu.Item>

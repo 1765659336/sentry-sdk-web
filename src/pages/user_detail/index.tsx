@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Input, Card, Button, Collapse, Table, DatePicker, message } from "antd";
+import { useEffect, useRef, useState } from "react";
+import { Input, Card, Button, Collapse, Table, DatePicker, message, Slider } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 

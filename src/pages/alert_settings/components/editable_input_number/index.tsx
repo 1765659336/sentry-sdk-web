@@ -8,12 +8,13 @@ interface EditableInputNumberProps {
     value: number | null;
     submit: () => Promise<unknown>;
     onChange: (value: number | null) => void;
+    addonAfter?: React.ReactNode;
     min?: number;
     max?: number;
     title?: string;
 }
 
-const EditableInputNumber: React.FC<EditableInputNumberProps> = ({ value, onChange, submit, min = 10, max = 100, title = 'Editable Value' }) => {
+const EditableInputNumber: React.FC<EditableInputNumberProps> = ({ value, onChange, submit, min = 10, max = 100, addonAfter = null, title = 'Editable Value' }) => {
     const [disabled, setDisabled] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -40,6 +41,7 @@ const EditableInputNumber: React.FC<EditableInputNumberProps> = ({ value, onChan
                     max={max}
                     disabled={disabled}
                     value={value}
+                    addonAfter={addonAfter}
                     onChange={onChange}
                 />
                 <div className='cursor-pointer ml-2'>

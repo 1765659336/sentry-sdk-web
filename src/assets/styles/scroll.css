@@ -1,24 +1,25 @@
-/* Hide scrollbar in all modern browsers */
+/* WebKit浏览器 */
 
-* {
-    overflow: auto;
-    /* Ensure content is scrollable */
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* Internet Explorer 10+ */
-}
-
-*::-webkit-scrollbar {
-    display: none;
-    /* WebKit and Blink engines */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 7px;
 }
 
 
-/* Hide scrollbar on the root element */
+/* 滚动条轨道色 */
 
-html,
-body {
-    overflow: hidden;
-    /* Optionally hide the main page scrollbar */
+::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+
+/* 滚动条柱体颜色 */
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
 }

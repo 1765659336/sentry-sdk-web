@@ -46,6 +46,8 @@ const AlertSettings = () => {
 
     const [value4, setValue4] = useState<number | null>(10);
 
+    const [value5, setValue5] = useState<number | null>(30);
+
 
     const submit = () => {
         return new Promise(res => {
@@ -62,33 +64,45 @@ const AlertSettings = () => {
     return (
         <>
             {contextHolder}
-            <Row>
-                <Col xs={24} sm={12} md={8}>
-                    <Card>
-                        <EditableInputNumber title="用户行为收集阈值" value={value} onChange={setValue} submit={submit}></EditableInputNumber>
-                    </Card>
-                </Col>
-                <Col xs={24} sm={12} md={8}>
-                    <Card>
-                        <EditableInputNumber title="点击收集阈值" value={value2} onChange={setValue2} submit={submit}></EditableInputNumber>
-                    </Card>
-                </Col>
-                <Col xs={24} sm={12} md={8}>
-                    <Card>
-                        <EditableInputNumber title="页面切换收集阈值" value={value3} onChange={setValue3} submit={submit}></EditableInputNumber>
-                    </Card>
-                </Col>
-                <Col xs={24} sm={12} md={8}>
-                    <Card>
-                        <EditableInputNumber title="接口请求收集阈值" value={value4} onChange={setValue4} submit={submit}></EditableInputNumber>
-                    </Card>
-                </Col>
-                <Col xs={24} sm={12} md={8}>
-                    <Card>
-                        <SystemSwitch></SystemSwitch>
-                    </Card>
-                </Col>
-            </Row>
+            <Card title="采集设置" bordered={false}>
+                <Row>
+                    <Col xs={24} sm={12} md={8}>
+                        <Card>
+                            <EditableInputNumber title="用户行为收集阈值" value={value} onChange={setValue} submit={submit}></EditableInputNumber>
+                        </Card>
+                    </Col>
+                    <Col xs={24} sm={12} md={8}>
+                        <Card>
+                            <EditableInputNumber title="点击收集阈值" value={value2} onChange={setValue2} submit={submit}></EditableInputNumber>
+                        </Card>
+                    </Col>
+                    <Col xs={24} sm={12} md={8}>
+                        <Card>
+                            <EditableInputNumber title="页面切换收集阈值" value={value3} onChange={setValue3} submit={submit}></EditableInputNumber>
+                        </Card>
+                    </Col>
+                    <Col xs={24} sm={12} md={8}>
+                        <Card>
+                            <EditableInputNumber title="接口请求收集阈值" value={value4} onChange={setValue4} submit={submit}></EditableInputNumber>
+                        </Card>
+                    </Col>
+
+                </Row>
+            </Card>
+            <Card title="系统设置">
+                <Row>
+                    <Col xs={24} sm={12} md={8}>
+                        <Card>
+                            <SystemSwitch></SystemSwitch>
+                        </Card>
+                    </Col>
+                    <Col xs={24} sm={12} md={8}>
+                        <Card>
+                            <EditableInputNumber title="消息通知间隔" addonAfter={<>s</>} value={value5} onChange={setValue5} submit={submit}></EditableInputNumber>
+                        </Card>
+                    </Col>
+                </Row>
+            </Card>
         </>
     )
 }

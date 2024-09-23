@@ -10,6 +10,7 @@ import { E_TrackerDetailType } from '@/main';
 import Meta from 'antd/es/card/Meta';
 import Lottie from 'lottie-react';
 import animationData from '@/assets/lotties/avatar.json'
+import { CloseOutlined } from '@ant-design/icons';
 
 const UserRecordDetail = () => {
 
@@ -59,7 +60,7 @@ const UserRecordDetail = () => {
     }, [userId, beginTime])
 
     return (
-        <>
+        <Card title='用户详情' extra={<CloseOutlined onClick={() => navigator(-1)} />}>
             <Row>
                 <Col xs={24} sm={12}>
                     <Card loading={pageLoading} title={'共' + data.length + '条记录'}>
@@ -134,7 +135,7 @@ const UserRecordDetail = () => {
                     }); setOpen(false)
                 }}>2024/07/24 18:42:21 进入系统</p>
             </Modal>
-        </>
+        </Card>
     )
 }
 
