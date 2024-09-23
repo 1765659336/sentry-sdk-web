@@ -103,7 +103,7 @@ const UserDetail = () => {
                 </Collapse>
             </Card>
             <Card>
-                <Table dataSource={mockData} columns={columns} pagination={{
+                <Table className="overflow-x-auto" dataSource={mockData} columns={columns} pagination={{
                     pageSize: 5,
                     total: 10,
                     onChange: handleSearch

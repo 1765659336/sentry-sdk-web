@@ -1,24 +1,50 @@
-import { RouterProvider } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { RouterProvider } from 'react-router-dom';
 import { globalRouters } from './router';
 import { ConfigProvider } from 'antd';
 import { useSystemStore } from './store';
-import { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const App = () => {
+const getRandomInitialPosition = () => {
+  const positions = [
+    { x: -100, y: -100 }, // 左上
+    { x: - window.innerWidth - 100, y: 100 }, // 右上
+    { x: -100, y: - window.innerHeight - 100 }, // 左下
+    { x: - window.innerWidth - 100, y: - window.innerHeight - 100 }, // 右下
+  ];
+  return positions[Math.floor(Math.random() * positions.length)];
+};
 
-  const systemPrimary = useSystemStore((state) => state.systemPrimary);
+const AnimatedRoutes: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [key, setKey] = useState(window.location.href);
+  const [initialPosition, setInitialPosition] = useState(getRandomInitialPosition());
 
-  const systemSize = useSystemStore((state) => state.systemSize);
-
-  const systemFontFamily = useSystemStore((state) => state.systemFontFamily);
 
   useEffect(() => {
-    document.body.className = document.body.className.replace(/font-family-\S+/g, '');
+    const i = setInterval(() => {
+      setKey(window.location.href);
+      setInitialPosition(getRandomInitialPosition());
+    }, 10);
+    return () => clearInterval(i);
+  }, [])
 
-    if (systemFontFamily) {
-      document.body.classList.add(`font-family-${systemFontFamily}`);
-    }
-  }, [systemFontFamily]);
+  return (
+    <AnimatePresence>
+      <motion.div
+        key={key}
+        initial={{ opacity: 0, x: initialPosition.x, y: initialPosition.y }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
+const App: React.FC = () => {
+  const systemPrimary = useSystemStore((state) => state.systemPrimary);
+  const systemSize = useSystemStore((state) => state.systemSize);
 
   return (
     <ConfigProvider
@@ -30,9 +56,11 @@ const App = () => {
         },
       }}
     >
-      <RouterProvider router={globalRouters} />
+      <AnimatedRoutes>
+        <RouterProvider router={globalRouters} />
+      </AnimatedRoutes>
     </ConfigProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

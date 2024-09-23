@@ -52,7 +52,7 @@ const SystemError = () => {
 
     return (
         <Card>
-            <Table dataSource={data} columns={columns} pagination={{
+            <Table className="overflow-x-auto" dataSource={data} columns={columns} pagination={{
                 pageSize: 5,
                 total: data.length,
                 onChange: handleSearch

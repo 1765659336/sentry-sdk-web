@@ -1,4 +1,4 @@
-import { Card, Col, Modal, Row } from 'antd';
+import { Card, Col, List, Modal, Row, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import CalendarHeatmap, { ReactCalendarHeatmapValue } from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
@@ -108,32 +108,30 @@ const UserRecordDetail = () => {
                 </Col>
             </Row>
             <Modal
-                title={<p>userId为{userId}的用户在{currentRecord?.date}的系统使用记录</p>}
+                title={<p>userId为{userId}的用户在{currentRecord?.date}当天的系统使用记录</p>}
                 footer={null}
                 loading={loading}
                 open={open}
                 onCancel={() => setOpen(false)}
             >
-                <p className='cursor-pointer' onClick={() => {
-                    navigator(`/index/user_record_detail/${userId}/1726643847221`, {
-                        replace: true
-                    }); setOpen(false)
-                }}>2024/06/24 09:22:22 进入系统</p>
-                <p className='cursor-pointer' onClick={() => {
-                    navigator(`/index/user_record_detail/${userId}/1326643847221`, {
-                        replace: true
-                    }); setOpen(false)
-                }}>2024/07/24 14:42:21 进入系统</p>
-                <p className='cursor-pointer' onClick={() => {
-                    navigator(`/index/user_record_detail/${userId}/1713643847221`, {
-                        replace: true
-                    }); setOpen(false)
-                }}>2024/07/24 15:42:21 进入系统</p>
-                <p className='cursor-pointer' onClick={() => {
-                    navigator(`/index/user_record_detail/${userId}/1726644847221`, {
-                        replace: true
-                    }); setOpen(false)
-                }}>2024/07/24 18:42:21 进入系统</p>
+                <List
+                    bordered
+                    dataSource={[{ date: '2024/06/24 09:22:22', timestamp: '1726643847221' },
+                    { date: '2024/07/24 14:42:21', timestamp: '1326643847221' },
+                    { date: '2024/07/24 15:42:21', timestamp: '1713643847221' },
+                    { date: '2024/07/24 18:42:21', timestamp: '1726644847221' }]}
+                    renderItem={(item) => (
+                        <List.Item>
+                            <p className='cursor-pointer' onClick={() => {
+                                navigator(`/index/user_record_detail/${userId}/${item.timestamp}`, {
+                                    replace: true
+                                }); setOpen(false)
+                            }}>
+                                {item.date} 进入系统
+                            </p>
+                        </List.Item>
+                    )}
+                />
             </Modal>
         </Card>
     )

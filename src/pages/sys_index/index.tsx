@@ -65,9 +65,11 @@ const SysIndex = () => {
     };
 
     useEffect(() => {
-        if (!systemUid) {
-            setTourOpen(true);
-        }
+        setTimeout(() => {
+            if (!systemUid) {
+                setTourOpen(true);
+            }
+        }, 1000)
     }, [])
 
     return (

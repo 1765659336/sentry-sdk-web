@@ -170,6 +170,7 @@ const PerformanceShow = () => {
                 <Col xs={24} md={12}>
                     <Card title='页面加载耗时路由Top 10'>
                         <Table
+                            className="overflow-x-auto"
                             dataSource={rawData}
                             columns={columns}
                             rowKey="url"
@@ -179,31 +180,37 @@ const PerformanceShow = () => {
                 </Col>
                 <Col span={24}>
                     <Card title="接口性能">
-                        <div className="flex gap-2 bg-gray-100 p-2">
-                            <Card className="flex-1">
-                                <Statistic
-                                    title="接口请求总量"
-                                    value={62605}
-                                    valueStyle={{ fontWeight: 'bold' }}
-                                />
-                            </Card>
-                            <Card className="flex-1">
-                                <Statistic
-                                    title="接口请求平均耗时"
-                                    formatter={value => <>{value} ms</>}
-                                    value={753}
-                                    valueStyle={{ fontWeight: 'bold' }}
-                                />
-                            </Card>
-                            <Card className="flex-1">
-                                <Statistic
-                                    title="接口请求成功率"
-                                    formatter={value => <>{value} %</>}
-                                    value={99.71}
-                                    valueStyle={{ fontWeight: 'bold' }}
-                                />
-                            </Card>
-                        </div>
+                        <Row>
+                            <Col xs={24} md={8}>
+                                <Card className="flex-1">
+                                    <Statistic
+                                        title="接口请求总量"
+                                        value={62605}
+                                        valueStyle={{ fontWeight: 'bold' }}
+                                    />
+                                </Card>
+                            </Col>
+                            <Col xs={24} md={8}>
+                                <Card className="flex-1">
+                                    <Statistic
+                                        title="接口请求平均耗时"
+                                        formatter={value => <>{value} ms</>}
+                                        value={753}
+                                        valueStyle={{ fontWeight: 'bold' }}
+                                    />
+                                </Card>
+                            </Col>
+                            <Col xs={24} md={8}>
+                                <Card className="flex-1">
+                                    <Statistic
+                                        title="接口请求成功率"
+                                        formatter={value => <>{value} %</>}
+                                        value={99.71}
+                                        valueStyle={{ fontWeight: 'bold' }}
+                                    />
+                                </Card>
+                            </Col>
+                        </Row>
                     </Card>
                 </Col>
                 <Col xs={24} md={12}>
@@ -214,6 +221,7 @@ const PerformanceShow = () => {
                 <Col xs={24} md={12}>
                     <Card title='接口请求耗时Top 10'>
                         <Table
+                            className="overflow-x-auto"
                             dataSource={rawData2}
                             columns={columns2}
                             rowKey="url"
