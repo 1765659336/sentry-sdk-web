@@ -1,8 +1,12 @@
-import { Button, Card, message, Table } from "antd";
+import { Button, Card, Collapse, message, Table, DatePicker, Select } from "antd";
 import { data } from "./mockData"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { E_TrackerDetailType } from "@/main";
+
+const { Panel } = Collapse;
+
+const { RangePicker } = DatePicker;
 
 const SystemError = () => {
     const navigator = useNavigate();
@@ -51,13 +55,37 @@ const SystemError = () => {
     ];
 
     return (
-        <Card>
-            <Table className="overflow-x-auto" dataSource={data} columns={columns} pagination={{
-                pageSize: 5,
-                total: data.length,
-                onChange: handleSearch
-            }} loading={loading} />
-        </Card>
+        <>
+            <Card>
+                <Collapse>
+                    <Panel header="搜索条件" key="1">
+                        <div className="flex flex-col">
+                            <RangePicker
+                                className="mb-2"
+                                placeholder={['发生开始时间', '发生结束时间']}
+                                format='YYYY/MM/DD HH:mm:ss'
+                                onChange={handleSearch}
+                            />
+                            <Select
+                                mode="multiple"
+                                allowClear
+                                placeholder="状态"
+                                onChange={handleSearch}
+                                options={[{ label: '未处理', value: 0 }, { label: '已处理', value: 1 }]}
+                            />
+                        </div>
+                    </Panel>
+                </Collapse>
+            </Card>
+            <Card>
+                <Table className="overflow-x-auto" dataSource={data} columns={columns} pagination={{
+                    pageSize: 5,
+                    total: data.length,
+                    onChange: handleSearch
+                }} loading={loading} />
+            </Card>
+        </>
+
     )
 }
 
