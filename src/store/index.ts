@@ -10,6 +10,8 @@ interface SystemStoreState {
   setSystemSize: (size: 'small' | 'middle' | 'large') => void;
   systemFontFamily: string;
   setSystemFontFamily: (fontFamily: string) => void;
+  referrer: string;
+  setReferrer: (referrer: string) => void;
 }
 
 export const useSystemStore = create<SystemStoreState>(
@@ -23,6 +25,8 @@ export const useSystemStore = create<SystemStoreState>(
       setSystemSize: (size: 'small' | 'middle' | 'large') => set({ systemSize: size }),
       systemFontFamily: 'caveat',
       setSystemFontFamily: (fontFamily: string) => set({ systemFontFamily: fontFamily }),
+      referrer: '',
+      setReferrer: (referrer: string) => set({ referrer: referrer }),
     }),
     {
       name: 'system-store', 

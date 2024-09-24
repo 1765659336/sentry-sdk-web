@@ -1,6 +1,6 @@
 import { Button, Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
-import { HomeOutlined, UserOutlined, AppstoreOutlined, DatabaseOutlined, AlertOutlined, SettingOutlined, LogoutOutlined, InfoOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined, AppstoreOutlined, DatabaseOutlined, AlertOutlined, SettingOutlined, LayoutOutlined } from '@ant-design/icons';
 import Lottie from 'lottie-react';
 import animationData from '@/assets/lotties/user.json'
 
@@ -28,7 +28,7 @@ const HeaderMenu = () => {
                 <Menu.Item key="/index/user_detail" icon={<UserOutlined />}>
                     <Link to="user_detail">用户细查</Link>
                 </Menu.Item>
-                <Menu.Item key="/index/page_detail" icon={<UserOutlined />}>
+                <Menu.Item key="/index/page_detail" icon={<LayoutOutlined />}>
                     <Link to="page_detail">页面细查</Link>
                 </Menu.Item>
                 <Menu.Item key="/index/system_error" icon={<AlertOutlined />}>
