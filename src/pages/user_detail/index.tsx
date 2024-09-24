@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { Input, Card, Button, Collapse, Table, DatePicker, message, Slider } from "antd";
+import { useState } from "react";
+import { Input, Card, Button, Collapse, Table, DatePicker, message } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +29,7 @@ const UserDetail = () => {
     const columns = [
         { title: "用户ID", dataIndex: "userId", key: "userId" },
         { title: "内置ID", dataIndex: "internalId", key: "internalId" },
-        { title: "页面", dataIndex: "page", key: "page" },
+        { title: "页面URL", dataIndex: "page", key: "page" },
         { title: "设备平台", dataIndex: "platform", key: "platform" },
         { title: "用户IP地址", dataIndex: "ipAddress", key: "ipAddress" },
         { title: "浏览器信息", dataIndex: "browser", key: "browser" },
@@ -84,7 +84,7 @@ const UserDetail = () => {
                     }
                 />
             </Card>
-            <Card className="w-full">
+            <Card>
                 <Collapse>
                     <Panel header="搜索条件" key="1">
                         <div className="flex flex-col">

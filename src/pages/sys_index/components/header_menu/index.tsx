@@ -28,6 +28,9 @@ const HeaderMenu = () => {
                 <Menu.Item key="/index/user_detail" icon={<UserOutlined />}>
                     <Link to="user_detail">用户细查</Link>
                 </Menu.Item>
+                <Menu.Item key="/index/page_detail" icon={<UserOutlined />}>
+                    <Link to="page_detail">页面细查</Link>
+                </Menu.Item>
                 <Menu.Item key="/index/system_error" icon={<AlertOutlined />}>
                     <Link to="system_error">系统错误</Link>
                 </Menu.Item>

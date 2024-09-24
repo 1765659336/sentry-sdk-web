@@ -1,11 +1,12 @@
 import { useSystemStore } from "@/store";
 import { ApiOutlined } from "@ant-design/icons";
 import { Badge } from "antd";
+import Lottie from "lottie-react";
+import animationData from '@/assets/lotties/404.json'
 
 interface SystemItemProps {
     name: string;
     status: string;
-    icon: string;
     selected: boolean;
     onClick: () => void;
 }
@@ -16,8 +17,7 @@ const statusStyles: { [k: string]: string } = {
     danger: 'border-red-500 bg-red-100 text-red-700',
 };
 
-const SystemItem: React.FC<SystemItemProps> = ({ name, status, icon, selected, onClick }) => {
-
+const SystemItem: React.FC<SystemItemProps> = ({ name, status, selected, onClick }) => {
 
     return (
         <div
@@ -25,7 +25,7 @@ const SystemItem: React.FC<SystemItemProps> = ({ name, status, icon, selected, o
                 }`}
             onClick={onClick}
         >
-            <img src={icon} alt={name} className="w-10 h-10 mr-4" />
+            <Lottie className="w-10 h-10 mr-4 " animationData={animationData} loop={true} />
             <div className="flex-1">
                 <h3 className="text-sm font-semibold">{name}</h3>
                 <p className="text-sm">
@@ -38,9 +38,9 @@ const SystemItem: React.FC<SystemItemProps> = ({ name, status, icon, selected, o
 
 
 const systems = [
-    { id: '1', name: '丰恺思系统', status: 'active', icon: 'https://via.placeholder.com/40' },
-    { id: '2', name: '协作平台', status: 'warning', icon: 'https://via.placeholder.com/40' },
-    { id: '3', name: 'OA系统', status: 'danger', icon: 'https://via.placeholder.com/40' },
+    { id: '1', name: '丰恺思系统', status: 'active' },
+    { id: '2', name: '协作平台', status: 'warning' },
+    { id: '3', name: 'OA系统', status: 'danger' },
 ];
 
 const SystemList: React.FC = () => {
@@ -62,7 +62,6 @@ const SystemList: React.FC = () => {
                             key={system.id}
                             name={system.name}
                             status={system.status}
-                            icon={system.icon}
                             selected={system.id === systemUid}
                             onClick={() => handleItemClick(system.id)}
                         />
@@ -70,7 +69,6 @@ const SystemList: React.FC = () => {
                         key={system.id}
                         name={system.name}
                         status={system.status}
-                        icon={system.icon}
                         selected={system.id === systemUid}
                         onClick={() => handleItemClick(system.id)}
                     />}

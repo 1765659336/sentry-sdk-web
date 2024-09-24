@@ -78,7 +78,7 @@ const Login: React.FC = () => {
                                         <div className='left-2' style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
                                             登录
                                         </div>
-                                        {loading ? null : <div className='w-30 h-30 overflow-hidden'><Lottie animationData={animationDataClick} loop={true} /></div>}
+                                        {loading ? null : <div className='w-16 h-16 overflow-hidden'><Lottie animationData={animationDataClick} loop={true} /></div>}
                                     </Button>
                                 </Space>
                             </Form.Item>

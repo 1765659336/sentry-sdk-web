@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Typography, Card, Row, Col } from 'antd';
 import { useNavigate } from 'react-router-dom'
+import FlipButton from '@/components/flip_button/index'
 
 const { Title, Paragraph } = Typography;
 
@@ -38,9 +39,7 @@ const Home: React.FC = () => {
                     </Col>
                 </Row>
                 <div className="text-center mt-8">
-                    <Button type="primary" size="large" onClick={() => navigator('/index/traffic_data')}>
-                        进入监控面板
-                    </Button>
+                    <FlipButton text="查看详情" onClick={() => navigator('/index/traffic_data')}></FlipButton>
                 </div>
             </Card>
         </div>

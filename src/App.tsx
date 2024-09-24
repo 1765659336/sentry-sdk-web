@@ -45,6 +45,8 @@ const AnimatedRoutes: React.FC<{ children: React.ReactNode }> = ({ children }) =
 const App: React.FC = () => {
   const systemPrimary = useSystemStore((state) => state.systemPrimary);
   const systemSize = useSystemStore((state) => state.systemSize);
+  const systemFontFamily = useSystemStore((state) => state.systemFontFamily);
+
 
   return (
     <ConfigProvider
@@ -57,7 +59,9 @@ const App: React.FC = () => {
       }}
     >
       <AnimatedRoutes>
-        <RouterProvider router={globalRouters} />
+        <div className={'font-family-' + systemFontFamily}>
+          <RouterProvider router={globalRouters} />
+        </div>
       </AnimatedRoutes>
     </ConfigProvider>
   );

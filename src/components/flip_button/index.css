@@ -1,0 +1,51 @@
+@keyframes flip {
+    0% {
+        transform: rotateX(0deg);
+    }
+
+    100% {
+        transform: rotateX(360deg);
+    }
+}
+
+.flip-button {
+    padding: 1.6vw 3.2vw;
+    border: none;
+    border-radius: 50vw;
+    color: #fff;
+    font-size: 1.6vw;
+    font-weight: bold;
+    letter-spacing: 0.8vw;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: ease-in-out 2s;
+}
+
+.flip-button.flipped {
+    animation: flip 2s forwards;
+}
+
+.flip-button::before,
+.flip-button::after {
+    content: "";
+    border: 0.6vw solid #fff;
+    border-radius: 50vw;
+    position: absolute;
+    top: 1vw;
+    left: 1vw;
+    right: 1vw;
+    bottom: 1vw;
+    transform-style: preserve-3d;
+    transform: perspective(1000vw) translateZ(5vw);
+}
+
+.flip-button::after {
+    transform: perspective(1000vw) translateZ(-5vw);
+}
+
+.flip-button span {
+    display: block;
+    transform-style: preserve-3d;
+    transform: perspective(500vw) translateZ(8vw);
+}

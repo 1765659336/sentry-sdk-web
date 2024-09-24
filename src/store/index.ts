@@ -21,7 +21,7 @@ export const useSystemStore = create<SystemStoreState>(
       setSystemPrimary: (color: React.CSSProperties['color']) => set({ systemPrimary: color }),
       systemSize: 'middle',
       setSystemSize: (size: 'small' | 'middle' | 'large') => set({ systemSize: size }),
-      systemFontFamily: 'font-family-caveat',
+      systemFontFamily: 'caveat',
       setSystemFontFamily: (fontFamily: string) => set({ systemFontFamily: fontFamily }),
     }),
     {

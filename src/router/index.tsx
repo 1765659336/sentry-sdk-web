@@ -12,6 +12,8 @@ import SystemError from '@/pages/system_error';
 import UserRecordDetail from '@/pages/user_record_detail';
 import SystemErrorDetailBehavior from '@/pages/system_error_detail_behavior';
 import SystemErrorDetailRrwebUrl from '@/pages/system_error_detail_rrwebUrl';
+import PageDetail from '@/pages/page_detail';
+import PageRecordDetail from '@/pages/page_record_detail';
 
 export const globalRouters = createHashRouter([
     {
@@ -70,6 +72,14 @@ export const globalRouters = createHashRouter([
                 path: 'system_error_detail_rrwebUrl/:rrwebUrl',
                 element: <SystemErrorDetailRrwebUrl />,
             },
+            {
+                path: 'page_detail',
+                element: <PageDetail />,
+            },
+            {
+                path: 'page_record_detail/:uuid',
+                element: <PageRecordDetail />,
+            }
         ]
     },
     {
