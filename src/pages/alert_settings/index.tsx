@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Card, Col, Row, Switch, Typography, message } from "antd";
 import EditableInputNumber from "./components/editable_input_number";
-
 const { Title } = Typography;
 
 const SystemSwitch = () => {

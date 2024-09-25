@@ -1,5 +1,7 @@
 import ConcentrationDurationDistributionEcharts from "@/components/echarts_option";
 import { Card, Col, Row, Statistic, Table } from "antd";
+import { useEffect, useState } from "react";
+import useInView from '@/hooks/useInView'
 
 const networkOption: echarts.EChartsOption = {
     title: {
@@ -148,12 +150,37 @@ const columns2 = [
 ];
 
 const PerformanceShow = () => {
+
+    const [requestListLoading, setRequestListLoading] = useState(true);
+
+    const [pageListLoading, setPageListLoading] = useState(true);
+
+    const { ref: requestListRef, isInView: requestListIsInView } = useInView();
+
+    const { ref: pageListRef, isInView: pageListIsInView } = useInView();
+
+    useEffect(() => {
+        if (requestListIsInView && requestListLoading) {
+            setTimeout(() => {
+                setRequestListLoading(false);
+            }, 3000)
+        }
+
+    }, [requestListIsInView]);
+
+    useEffect(() => {
+        if (pageListIsInView && pageListLoading) {
+            setTimeout(() => {
+                setPageListLoading(false);
+            }, 3000)
+        }
+    }, [pageListIsInView])
+
     return (
         <>
-
             <Row>
-                <Col span={24}>
-                    <Card title='页面性能'>
+                <Col ref={pageListRef} span={24}>
+                    <Card loading={pageListLoading} title='页面性能'>
                         <Statistic
                             title="页面平均加载时间"
                             formatter={(value) => <>{value} ms</>}
@@ -163,12 +190,12 @@ const PerformanceShow = () => {
                     </Card>
                 </Col>
                 <Col xs={24} md={12}>
-                    <Card title='网络类型占比'>
+                    <Card loading={pageListLoading} title='网络类型占比'>
                         <ConcentrationDurationDistributionEcharts options={networkOption} style={{ 'width': '100%', 'height': '550px' }}></ConcentrationDurationDistributionEcharts>
                     </Card>
                 </Col>
                 <Col xs={24} md={12}>
-                    <Card title='页面加载耗时路由Top 10'>
+                    <Card loading={pageListLoading} title='页面加载耗时路由Top 10'>
                         <Table
                             className="overflow-x-auto"
                             dataSource={rawData}
@@ -178,11 +205,11 @@ const PerformanceShow = () => {
                         />
                     </Card>
                 </Col>
-                <Col span={24}>
+                <Col ref={requestListRef} span={24}>
                     <Card title="接口性能">
                         <Row>
                             <Col xs={24} md={8}>
-                                <Card className="flex-1">
+                                <Card loading={requestListLoading} className="flex-1">
                                     <Statistic
                                         title="接口请求总量"
                                         value={62605}
@@ -191,7 +218,7 @@ const PerformanceShow = () => {
                                 </Card>
                             </Col>
                             <Col xs={24} md={8}>
-                                <Card className="flex-1">
+                                <Card loading={requestListLoading} className="flex-1">
                                     <Statistic
                                         title="接口请求平均耗时"
                                         formatter={value => <>{value} ms</>}
@@ -201,7 +228,7 @@ const PerformanceShow = () => {
                                 </Card>
                             </Col>
                             <Col xs={24} md={8}>
-                                <Card className="flex-1">
+                                <Card loading={requestListLoading} className="flex-1">
                                     <Statistic
                                         title="接口请求成功率"
                                         formatter={value => <>{value} %</>}
@@ -214,12 +241,12 @@ const PerformanceShow = () => {
                     </Card>
                 </Col>
                 <Col xs={24} md={12}>
-                    <Card title='接口请求耗时分段数量占比'>
+                    <Card loading={requestListLoading} title='接口请求耗时分段数量占比'>
                         <ConcentrationDurationDistributionEcharts options={networkOption2} style={{ 'width': '100%', 'height': '550px' }}></ConcentrationDurationDistributionEcharts>
                     </Card>
                 </Col>
                 <Col xs={24} md={12}>
-                    <Card title='接口请求耗时Top 10'>
+                    <Card loading={requestListLoading} title='接口请求耗时Top 10'>
                         <Table
                             className="overflow-x-auto"
                             dataSource={rawData2}
