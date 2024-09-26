@@ -41,7 +41,7 @@ const SystemError = () => {
                         type="link"
                         onClick={() => navigator(`/index/system_error_detail_behavior/${record.uuid}`)}
                     >
-                        错误详情
+                        查看详情
                     </Button>
                     <Button
                         type="link"

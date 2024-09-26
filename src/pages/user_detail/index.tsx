@@ -44,7 +44,7 @@ const UserDetail = () => {
                     type="link"
                     onClick={() => navigator(`/index/user_record_detail/${record.userId}/${record.timestamp}`)}
                 >
-                    用户细查
+                    查看详情
                 </Button>
             ),
         },

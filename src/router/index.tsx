@@ -14,6 +14,9 @@ import SystemErrorDetailBehavior from '@/pages/system_error_detail_behavior';
 import SystemErrorDetailRrwebUrl from '@/pages/system_error_detail_rrwebUrl';
 import PageDetail from '@/pages/page_detail';
 import PageRecordDetail from '@/pages/page_record_detail';
+import PageManagement from '@/pages/page_management';
+import SystemDistribution from '@/pages/system_distribution';
+import ProtectedRoute from '@/components/protected_route';
 
 export const globalRouters = createHashRouter([
     {
@@ -22,7 +25,9 @@ export const globalRouters = createHashRouter([
     },
     {
         path: '/login',
-        element: <Login />
+        element: <ProtectedRoute>
+            <Login />
+        </ProtectedRoute>
     },
     {
         path: '/index',
@@ -34,51 +39,87 @@ export const globalRouters = createHashRouter([
             },
             {
                 path: 'home',
-                element: <Home />,
+                element: <ProtectedRoute>
+                    <Home />
+                </ProtectedRoute>,
             },
             {
                 path: 'traffic_data',
-                element: <TrafficData />,
+                element: <ProtectedRoute>
+                    <TrafficData />
+                </ProtectedRoute>,
             },
             {
                 path: 'health_status',
-                element: <HealthStatus />,
+                element: <ProtectedRoute>
+                    <HealthStatus />
+                </ProtectedRoute>,
             },
             {
                 path: 'performance_show',
-                element: <PerformanceShow />,
+                element: <ProtectedRoute>
+                    <PerformanceShow />
+                </ProtectedRoute>,
             },
             {
                 path: 'user_detail',
-                element: <UserDetail />,
+                element: <ProtectedRoute>
+                    <UserDetail />
+                </ProtectedRoute>,
             },
             {
                 path: 'system_error',
-                element: <SystemError />,
+                element: <ProtectedRoute>
+                    <SystemError />
+                </ProtectedRoute>,
             },
             {
                 path: 'alert_settings',
-                element: <AlertSettings />,
+                element: <ProtectedRoute>
+                    <AlertSettings />
+                </ProtectedRoute>,
             },
             {
                 path: 'user_record_detail/:userId/:beginTime',
-                element: <UserRecordDetail />,
+                element: <ProtectedRoute>
+                    <UserRecordDetail />
+                </ProtectedRoute>,
             },
             {
                 path: 'system_error_detail_behavior/:uuid',
-                element: <SystemErrorDetailBehavior />,
+                element: <ProtectedRoute>
+                    <SystemErrorDetailBehavior />
+                </ProtectedRoute>,
             },
             {
                 path: 'system_error_detail_rrwebUrl/:rrwebUrl',
-                element: <SystemErrorDetailRrwebUrl />,
+                element: <ProtectedRoute>
+                    <SystemErrorDetailRrwebUrl />
+                </ProtectedRoute>,
             },
             {
                 path: 'page_detail',
-                element: <PageDetail />,
+                element: <ProtectedRoute>
+                    <PageDetail />
+                </ProtectedRoute>,
             },
             {
                 path: 'page_record_detail/:uuid',
-                element: <PageRecordDetail />,
+                element: <ProtectedRoute>
+                    <PageRecordDetail />
+                </ProtectedRoute>,
+            },
+            {
+                path: 'page_management',
+                element: <ProtectedRoute>
+                    <PageManagement />
+                </ProtectedRoute>
+            },
+            {
+                path: 'system_distribution',
+                element: <ProtectedRoute>
+                    <SystemDistribution />
+                </ProtectedRoute>
             }
         ]
     },
