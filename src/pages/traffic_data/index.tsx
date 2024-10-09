@@ -1,6 +1,8 @@
+import DescriptionComputer from "@/components/description_computer";
+import { E_Describe_Title } from "@/components/description_computer/type";
 import ConcentrationDurationDistributionEcharts from "@/components/echarts_option";
 import { ArrowUpOutlined } from "@ant-design/icons";
-import { Card, Statistic, StatisticProps } from "antd";
+import { Card, Flex, Statistic, StatisticProps } from "antd";
 import CountUp from 'react-countup';
 
 const formatter: StatisticProps['formatter'] = (value) => (
@@ -15,6 +17,69 @@ const formatter: StatisticProps['formatter'] = (value) => (
         />
     </>
 );
+
+const TrafficData = () => {
+    return (
+        <>
+            <Card title="流量数据" bordered={false}>
+                <div className="flex gap-2 bg-gray-100 p-2">
+                    <Card className="flex-1" bordered={false}>
+                        <Statistic
+                            title={<Flex align="center">
+                                <span>
+                                    浏览量（PV）
+                                </span>
+                                <DescriptionComputer title={E_Describe_Title.浏览量PV}></DescriptionComputer>
+                            </Flex>}
+                            formatter={formatter}
+                            value={6265}
+                            valueStyle={{ fontWeight: 'bold' }}
+                        />
+                    </Card>
+                    <Card className="flex-1" bordered={false}>
+                        <Statistic
+                            title={<Flex align="center">
+                                <span>
+                                    访客量（UV）
+                                </span>
+                                <DescriptionComputer title={E_Describe_Title.访客UV}></DescriptionComputer>
+                            </Flex>}
+                            formatter={formatter}
+                            value={56}
+                            valueStyle={{ fontWeight: 'bold' }}
+                        />
+                    </Card>
+                </div>
+            </Card>
+            <Card title={<Flex gap={6}>
+                <span>页面访问量趋势</span>
+                <DescriptionComputer title={E_Describe_Title.页面访问量趋势}></DescriptionComputer>
+            </Flex>}>
+                <ConcentrationDurationDistributionEcharts options={pageOptions} style={{ 'width': '100%', 'height': '240px' }}></ConcentrationDurationDistributionEcharts>
+            </Card>
+            <Card title={<Flex gap={6}>
+                <span>用户活跃量趋势</span>
+                <DescriptionComputer title={E_Describe_Title.用户活跃量趋势}></DescriptionComputer>
+            </Flex>}>
+                <ConcentrationDurationDistributionEcharts options={userOptions} style={{ 'width': '100%', 'height': '240px' }}></ConcentrationDurationDistributionEcharts>
+            </Card>
+            <Card title={<Flex gap={6}>
+                <span>页面访问量Top10</span>
+                <DescriptionComputer title={E_Describe_Title.页面访问量Top10}></DescriptionComputer>
+            </Flex>}>
+                <ConcentrationDurationDistributionEcharts options={PTopTenData} style={{ 'width': '100%', 'height': '400px' }}></ConcentrationDurationDistributionEcharts>
+            </Card>
+            <Card title={<Flex gap={6}>
+                <span>设备分辨率量Top10</span>
+                <DescriptionComputer title={E_Describe_Title.设备分辨率量Top10}></DescriptionComputer>
+            </Flex>}>
+                <ConcentrationDurationDistributionEcharts options={UTopTenData} style={{ 'width': '100%', 'height': '400px' }}></ConcentrationDurationDistributionEcharts>
+            </Card>
+        </>
+    )
+}
+
+export default TrafficData;
 
 const pageOptions: echarts.EChartsOption = {
     title: {
@@ -263,44 +328,3 @@ const PTopTenData: echarts.EChartsOption = {
         },
     ]
 }
-
-const TrafficData = () => {
-    return (
-        <>
-            <Card title="流量数据" bordered={false}>
-                <div className="flex gap-2 bg-gray-100 p-2">
-                    <Card className="flex-1" bordered={false}>
-                        <Statistic
-                            title="浏览量（PV）"
-                            formatter={formatter}
-                            value={6265}
-                            valueStyle={{ fontWeight: 'bold' }}
-                        />
-                    </Card>
-                    <Card className="flex-1" bordered={false}>
-                        <Statistic
-                            title="访客量（UV）"
-                            formatter={formatter}
-                            value={56}
-                            valueStyle={{ fontWeight: 'bold' }}
-                        />
-                    </Card>
-                </div>
-            </Card>
-            <Card title="页面访问量趋势">
-                <ConcentrationDurationDistributionEcharts options={pageOptions} style={{ 'width': '100%', 'height': '240px' }}></ConcentrationDurationDistributionEcharts>
-            </Card>
-            <Card title="用户活跃量趋势">
-                <ConcentrationDurationDistributionEcharts options={userOptions} style={{ 'width': '100%', 'height': '240px' }}></ConcentrationDurationDistributionEcharts>
-            </Card>
-            <Card title="页面访问量Top 10">
-                <ConcentrationDurationDistributionEcharts options={PTopTenData} style={{ 'width': '100%', 'height': '400px' }}></ConcentrationDurationDistributionEcharts>
-            </Card>
-            <Card title="设备分辨率量Top 10">
-                <ConcentrationDurationDistributionEcharts options={UTopTenData} style={{ 'width': '100%', 'height': '400px' }}></ConcentrationDurationDistributionEcharts>
-            </Card>
-        </>
-    )
-}
-
-export default TrafficData;

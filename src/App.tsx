@@ -4,6 +4,7 @@ import { globalRouters } from './router';
 import { ConfigProvider } from 'antd';
 import { useSystemStore } from './store';
 import { motion, AnimatePresence } from 'framer-motion';
+import zhCN from 'antd/locale/zh_CN';
 
 const getRandomInitialPosition = () => {
   const positions = [
@@ -18,7 +19,6 @@ const getRandomInitialPosition = () => {
 const AnimatedRoutes: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [key, setKey] = useState(window.location.href);
   const [initialPosition, setInitialPosition] = useState(getRandomInitialPosition());
-
 
   useEffect(() => {
     const i = setInterval(() => {
@@ -57,6 +57,7 @@ const App: React.FC = () => {
           colorLink: systemPrimary,
         },
       }}
+      locale={zhCN}
     >
       <AnimatedRoutes>
         <div className={'font-family-' + systemFontFamily}>

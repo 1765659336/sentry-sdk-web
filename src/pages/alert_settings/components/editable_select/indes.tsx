@@ -1,18 +1,18 @@
-import React, { ChangeEventHandler, useState } from 'react';
-import { Button, Input, Typography } from 'antd';
+import React, { ReactNode, useState } from 'react';
+import { Button, Select, SelectProps, Typography } from 'antd';
 import { EditOutlined, SaveOutlined } from '@ant-design/icons';
-import { valueType } from 'antd/es/statistic/utils';
 
 const { Title } = Typography;
 
-interface EditableInputProps {
-    value: valueType;
+interface EditableSelectProps {
+    value: SelectProps['value'];
     submit: () => Promise<unknown>;
-    onChange: ChangeEventHandler<HTMLInputElement>;
-    title?: string;
+    onChange: SelectProps['onChange'];
+    options: SelectProps['options'];
+    title?: ReactNode;
 }
 
-const EditableInput: React.FC<EditableInputProps> = ({ value, onChange, submit, title = 'Editable Value' }) => {
+const EditableSelect: React.FC<EditableSelectProps> = ({ value, onChange, submit, title = 'Editable Value', options }) => {
     const [disabled, setDisabled] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -30,14 +30,16 @@ const EditableInput: React.FC<EditableInputProps> = ({ value, onChange, submit, 
         setLoading(false);
     };
 
+
     return (
         <>
             <Title level={5}>{title}</Title>
             <div className="flex items-center">
-                <Input
-                    disabled={disabled}
+                <Select
                     value={value}
+                    disabled={disabled}
                     onChange={onChange}
+                    options={options}
                 />
                 <div className='cursor-pointer ml-2'>
                     <Button
@@ -50,4 +52,4 @@ const EditableInput: React.FC<EditableInputProps> = ({ value, onChange, submit, 
     );
 };
 
-export default EditableInput;
+export default EditableSelect;

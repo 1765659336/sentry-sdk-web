@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { Button, InputNumber, Typography } from 'antd';
 import { EditOutlined, SaveOutlined } from '@ant-design/icons';
 
@@ -11,7 +11,7 @@ interface EditableInputNumberProps {
     addonAfter?: React.ReactNode;
     min?: number;
     max?: number;
-    title?: string;
+    title?: ReactNode;
 }
 
 const EditableInputNumber: React.FC<EditableInputNumberProps> = ({ value, onChange, submit, min = 10, max = 100, addonAfter = null, title = 'Editable Value' }) => {
@@ -26,9 +26,9 @@ const EditableInputNumber: React.FC<EditableInputNumberProps> = ({ value, onChan
 
     const Save = async () => {
         setLoading(true);
+        setDisabled(true);
         await submit();
         setIsEditing(false);
-        setDisabled(true);
         setLoading(false);
     };
 

@@ -1,6 +1,8 @@
+import DescriptionComputer from "@/components/description_computer";
+import { E_Describe_Title } from "@/components/description_computer/type";
 import ConcentrationDurationDistributionEcharts from "@/components/echarts_option";
 import { EyeOutlined } from "@ant-design/icons";
-import { Badge, Button, Card, Col, Progress, ProgressProps, Row } from "antd";
+import { Badge, Button, Card, Col, Flex, Progress, ProgressProps, Row } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const pageOptions: echarts.EChartsOption = {
@@ -82,7 +84,14 @@ const HealthStatus = () => {
             <Card bordered={false}>
                 <Row>
                     <Col xs={24} sm={6}>
-                        <Card title='健康状态'>
+                        <Card title={
+                            <Flex align="center" gap={6}>
+                                <span>
+                                    健康状态
+                                </span>
+                                <DescriptionComputer title={E_Describe_Title.健康状态}></DescriptionComputer>
+                            </Flex>
+                        } className="h-full">
                             <div className="w-40">
                                 <Badge.Ribbon text="健康" color="green">
                                     <Progress status="success" type="circle" percent={96} format={(percent) => `${percent}分`} />
@@ -91,7 +100,14 @@ const HealthStatus = () => {
                         </Card>
                     </Col>
                     <Col xs={24} sm={18}>
-                        <Card title="各类型错误发生率">
+                        <Card title={
+                            <Flex align="center" gap={6}>
+                                <span>
+                                    各类型错误发生率
+                                </span>
+                                <DescriptionComputer title={E_Describe_Title.各类型错误发生率}></DescriptionComputer>
+                            </Flex>
+                        }>
                             <Row>
                                 <Col xs={24} sm={12} md={8} lg={6} xl={4}>
                                     <Progress type="circle" percent={16.8} strokeColor={conicColors} />
@@ -120,27 +136,56 @@ const HealthStatus = () => {
             </Card>
             <Row>
                 <Col xs={24} md={12} lg={8}>
-                    <Card title="js报错" extra={<Button onClick={() => navigator('/index/system_error')} icon={<EyeOutlined />}>详情</Button>}>
+                    <Card title={<Flex align="center" gap={6}>
+                        <span>
+                            js错误
+                        </span>
+                        <DescriptionComputer title={E_Describe_Title.js错误}></DescriptionComputer>
+                    </Flex>} extra={<Button onClick={() => navigator('/index/system_error')} icon={<EyeOutlined />}>详情</Button>}>
                         <ConcentrationDurationDistributionEcharts options={pageOptions} style={{ 'width': '100%', 'height': '240px' }}></ConcentrationDurationDistributionEcharts>
                     </Card>
                 </Col>
                 <Col xs={24} md={12} lg={8}>
-                    <Card title="自定义异常" extra={<Button onClick={() => navigator('/index/system_error')} icon={<EyeOutlined />}>详情</Button>} >
+                    <Card title={<Flex align="center" gap={6}>
+                        <span>
+                            自定义异常
+                        </span>
+                        <DescriptionComputer title={E_Describe_Title.自定义异常}></DescriptionComputer>
+                    </Flex>} extra={<Button onClick={() => navigator('/index/system_error')} icon={<EyeOutlined />}>详情</Button>} >
                         <ConcentrationDurationDistributionEcharts options={pageOptions} style={{ 'width': '100%', 'height': '240px' }}></ConcentrationDurationDistributionEcharts>
                     </Card>
                 </Col>
                 <Col xs={24} md={12} lg={8}>
-                    <Card title="静态资源异常" extra={<Button onClick={() => navigator('/index/system_error')} icon={<EyeOutlined />}>详情</Button>}>
+                    <Card title={<Flex align="center" gap={6}>
+                        <span>
+                            静态资源异常
+                        </span>
+                        <DescriptionComputer title={E_Describe_Title.静态资源异常}></DescriptionComputer>
+                    </Flex>} extra={<Button onClick={() => navigator('/index/system_error')} icon={<EyeOutlined />}>详情</Button>}>
                         <ConcentrationDurationDistributionEcharts options={pageOptions} style={{ 'width': '100%', 'height': '240px' }}></ConcentrationDurationDistributionEcharts>
                     </Card>
                 </Col>
                 <Col xs={24} md={12} lg={8}>
-                    <Card title="接口异常" extra={<Button onClick={() => navigator('/index/system_error')} icon={<EyeOutlined />}>详情</Button>}>
+                    <Card title={
+                        <Flex align="center" gap={6}>
+                            <span>
+                                接口异常
+                            </span>
+                            <DescriptionComputer title={E_Describe_Title.接口异常}></DescriptionComputer>
+                        </Flex>
+                    } extra={<Button onClick={() => navigator('/index/system_error')} icon={<EyeOutlined />}>详情</Button>}>
                         <ConcentrationDurationDistributionEcharts options={pageOptions} style={{ 'width': '100%', 'height': '240px' }}></ConcentrationDurationDistributionEcharts>
                     </Card>
                 </Col>
                 <Col xs={24} md={12} lg={8}>
-                    <Card title="框架错误" extra={<Button onClick={() => navigator('/index/system_error')} icon={<EyeOutlined />}>详情</Button>}>
+                    <Card title={
+                        <Flex align="center" gap={6}>
+                            <span>
+                                框架错误
+                            </span>
+                            <DescriptionComputer title={E_Describe_Title.框架错误}></DescriptionComputer>
+                        </Flex>
+                    } extra={<Button onClick={() => navigator('/index/system_error')} icon={<EyeOutlined />}>详情</Button>}>
                         <ConcentrationDurationDistributionEcharts options={pageOptions} style={{ 'width': '100%', 'height': '240px' }}></ConcentrationDurationDistributionEcharts>
                     </Card>
                 </Col>

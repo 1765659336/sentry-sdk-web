@@ -62,6 +62,28 @@ const UserRecordDetail = () => {
     return (
         <Card title='用户详情' extra={<CloseOutlined onClick={() => navigator(-1)} />}>
             <Row>
+                <Col xs={24} sm={4}>
+                    <Card
+                        loading={pageLoading}
+                        hoverable
+                        cover={<div className='w-full h-full'><Lottie animationData={animationData} loop={true} /></div>}
+                    >
+                        <Meta title="刘杰" description={userId} />
+                    </Card>
+                </Col>
+                <Col xs={24} sm={20}>
+                    <Card loading={pageLoading} className='h-full'>
+                        <CalendarHeatmap
+                            startDate={new Date('2024-01-01')}
+                            endDate={new Date('2024-12-31')}
+                            values={values}
+                            showWeekdayLabels={true}
+                            monthLabels={['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']}
+                            weekdayLabels={['周一', '周二', '周三', '周四', '周五', '周六', '周日']}
+                            onClick={(value) => calendarHeatmapClick(value)}
+                        />
+                    </Card>
+                </Col>
                 <Col xs={24} sm={12}>
                     <Card loading={pageLoading} title={'共' + data.length + '条记录'}>
                         <div className='overflow-y-auto h-80'>
@@ -82,28 +104,6 @@ const UserRecordDetail = () => {
                         <div className='overflow-y-auto h-80'>
                             <ReactJson src={jsonData} theme="summerfruit:inverted" />
                         </div>
-                    </Card>
-                </Col>
-                <Col xs={24} sm={4}>
-                    <Card
-                        loading={pageLoading}
-                        hoverable
-                        cover={<div className='w-full h-full'><Lottie animationData={animationData} loop={true} /></div>}
-                    >
-                        <Meta title="刘杰" description={userId} />
-                    </Card>
-                </Col>
-                <Col xs={24} sm={20}>
-                    <Card loading={pageLoading}>
-                        <CalendarHeatmap
-                            startDate={new Date('2024-01-01')}
-                            endDate={new Date('2024-12-31')}
-                            values={values}
-                            showWeekdayLabels={true}
-                            monthLabels={['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']}
-                            weekdayLabels={['周一', '周二', '周三', '周四', '周五', '周六', '周日']}
-                            onClick={(value) => calendarHeatmapClick(value)}
-                        />
                     </Card>
                 </Col>
             </Row>

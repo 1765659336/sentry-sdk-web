@@ -1,7 +1,173 @@
 import ConcentrationDurationDistributionEcharts from "@/components/echarts_option";
-import { Card, Col, Row, Statistic, Table } from "antd";
+import { Card, Col, Flex, Row, Statistic, Table } from "antd";
 import { useEffect, useState } from "react";
 import useInView from '@/hooks/useInView'
+import DescriptionComputer from "@/components/description_computer";
+import { E_Describe_Title } from "@/components/description_computer/type";
+
+const PerformanceShow = () => {
+
+    const [requestListLoading, setRequestListLoading] = useState(true);
+
+    const [pageListLoading, setPageListLoading] = useState(true);
+
+    const { ref: requestListRef, isInView: requestListIsInView } = useInView();
+
+    const { ref: pageListRef, isInView: pageListIsInView } = useInView();
+
+    useEffect(() => {
+        if (requestListIsInView && requestListLoading) {
+            setTimeout(() => {
+                setRequestListLoading(false);
+            }, 3000)
+        }
+
+    }, [requestListIsInView]);
+
+    useEffect(() => {
+        if (pageListIsInView && pageListLoading) {
+            setTimeout(() => {
+                setPageListLoading(false);
+            }, 3000)
+        }
+    }, [pageListIsInView])
+
+    return (
+        <>
+            <Row>
+                <Col ref={pageListRef} span={24}>
+                    <Card loading={pageListLoading} title='页面性能'>
+                        <Statistic
+                            title={<Flex align="center" gap={6}>
+                                <span>
+                                    页面平均加载时间
+                                </span>
+                                <DescriptionComputer title={E_Describe_Title.页面平均加载时间}></DescriptionComputer>
+                            </Flex>}
+                            formatter={(value) => <>{value} ms</>}
+                            value={6265}
+                            valueStyle={{ fontWeight: 'bold' }}
+                        />
+                    </Card>
+                </Col>
+                <Col xs={24} md={12}>
+                    <Card loading={pageListLoading} title={
+                        <Flex align="center" gap={6}>
+                            <span>
+                                网络类型占比
+                            </span>
+                            <DescriptionComputer title={E_Describe_Title.网络类型占比}></DescriptionComputer>
+                        </Flex>}>
+                        <ConcentrationDurationDistributionEcharts options={networkOption} style={{ 'width': '100%', 'height': '550px' }}></ConcentrationDurationDistributionEcharts>
+                    </Card>
+                </Col>
+                <Col xs={24} md={12}>
+                    <Card loading={pageListLoading} title={
+                        <Flex align="center" gap={6}>
+                            <span>
+                                页面加载耗时路由Top10
+                            </span>
+                            <DescriptionComputer title={E_Describe_Title.页面加载耗时路由Top10}></DescriptionComputer>
+                        </Flex>} className="h-full">
+                        <Table
+                            className="overflow-x-auto"
+                            dataSource={rawData}
+                            columns={columns}
+                            rowKey="url"
+                            pagination={false}
+                        />
+                    </Card>
+                </Col>
+                <Col ref={requestListRef} span={24}>
+                    <Card title="接口性能">
+                        <Row>
+                            <Col xs={24} md={8}>
+                                <Card loading={requestListLoading} className="flex-1">
+                                    <Statistic
+                                        title={
+                                            <Flex align="center" gap={6}>
+                                                <span>
+                                                    接口请求总量
+                                                </span>
+                                                <DescriptionComputer title={E_Describe_Title.接口请求总量}></DescriptionComputer>
+                                            </Flex>}
+                                        value={62605}
+                                        valueStyle={{ fontWeight: 'bold' }}
+                                    />
+                                </Card>
+                            </Col>
+                            <Col xs={24} md={8}>
+                                <Card loading={requestListLoading} className="flex-1">
+                                    <Statistic
+                                        title={
+                                            <Flex align="center" gap={6}>
+                                                <span>
+                                                    接口请求平均耗时
+                                                </span>
+                                                <DescriptionComputer title={E_Describe_Title.接口请求平均耗时}></DescriptionComputer>
+                                            </Flex>}
+                                        formatter={value => <>{value} ms</>}
+                                        value={753}
+                                        valueStyle={{ fontWeight: 'bold' }}
+                                    />
+                                </Card>
+                            </Col>
+                            <Col xs={24} md={8}>
+                                <Card loading={requestListLoading} className="flex-1">
+                                    <Statistic
+                                        title={
+                                            <Flex align="center" gap={6}>
+                                                <span>
+                                                    接口请求成功率
+                                                </span>
+                                                <DescriptionComputer title={E_Describe_Title.接口请求成功率}></DescriptionComputer>
+                                            </Flex>}
+                                        formatter={value => <>{value} %</>}
+                                        value={99.71}
+                                        valueStyle={{ fontWeight: 'bold' }}
+                                    />
+                                </Card>
+                            </Col>
+                        </Row>
+                    </Card>
+                </Col>
+                <Col xs={24} md={12}>
+                    <Card loading={requestListLoading} title={
+                        <Flex align="center" gap={6}>
+                            <span>
+                                接口请求耗时分段数量占比
+                            </span>
+                            <DescriptionComputer title={E_Describe_Title.接口请求耗时分段数量占比}></DescriptionComputer>
+                        </Flex>
+                    }>
+                        <ConcentrationDurationDistributionEcharts options={networkOption2} style={{ 'width': '100%', 'height': '550px' }}></ConcentrationDurationDistributionEcharts>
+                    </Card>
+                </Col>
+                <Col xs={24} md={12}>
+                    <Card loading={requestListLoading} title={
+                        <Flex align="center" gap={6}>
+                            <span>
+                                接口请求耗时Top10
+                            </span>
+                            <DescriptionComputer title={E_Describe_Title.接口请求耗时Top10}></DescriptionComputer>
+                        </Flex>
+                    } className="h-full">
+                        <Table
+                            className="overflow-x-auto"
+                            dataSource={rawData2}
+                            columns={columns2}
+                            rowKey="url"
+                            pagination={false}
+                        />
+                    </Card>
+                </Col>
+            </Row>
+        </>
+    )
+}
+
+export default PerformanceShow;
+
 
 const networkOption: echarts.EChartsOption = {
     title: {
@@ -148,117 +314,3 @@ const columns2 = [
         key: 'time'
     }
 ];
-
-const PerformanceShow = () => {
-
-    const [requestListLoading, setRequestListLoading] = useState(true);
-
-    const [pageListLoading, setPageListLoading] = useState(true);
-
-    const { ref: requestListRef, isInView: requestListIsInView } = useInView();
-
-    const { ref: pageListRef, isInView: pageListIsInView } = useInView();
-
-    useEffect(() => {
-        if (requestListIsInView && requestListLoading) {
-            setTimeout(() => {
-                setRequestListLoading(false);
-            }, 3000)
-        }
-
-    }, [requestListIsInView]);
-
-    useEffect(() => {
-        if (pageListIsInView && pageListLoading) {
-            setTimeout(() => {
-                setPageListLoading(false);
-            }, 3000)
-        }
-    }, [pageListIsInView])
-
-    return (
-        <>
-            <Row>
-                <Col ref={pageListRef} span={24}>
-                    <Card loading={pageListLoading} title='页面性能'>
-                        <Statistic
-                            title="页面平均加载时间"
-                            formatter={(value) => <>{value} ms</>}
-                            value={6265}
-                            valueStyle={{ fontWeight: 'bold' }}
-                        />
-                    </Card>
-                </Col>
-                <Col xs={24} md={12}>
-                    <Card loading={pageListLoading} title='网络类型占比'>
-                        <ConcentrationDurationDistributionEcharts options={networkOption} style={{ 'width': '100%', 'height': '550px' }}></ConcentrationDurationDistributionEcharts>
-                    </Card>
-                </Col>
-                <Col xs={24} md={12}>
-                    <Card loading={pageListLoading} title='页面加载耗时路由Top 10'>
-                        <Table
-                            className="overflow-x-auto"
-                            dataSource={rawData}
-                            columns={columns}
-                            rowKey="url"
-                            pagination={false}
-                        />
-                    </Card>
-                </Col>
-                <Col ref={requestListRef} span={24}>
-                    <Card title="接口性能">
-                        <Row>
-                            <Col xs={24} md={8}>
-                                <Card loading={requestListLoading} className="flex-1">
-                                    <Statistic
-                                        title="接口请求总量"
-                                        value={62605}
-                                        valueStyle={{ fontWeight: 'bold' }}
-                                    />
-                                </Card>
-                            </Col>
-                            <Col xs={24} md={8}>
-                                <Card loading={requestListLoading} className="flex-1">
-                                    <Statistic
-                                        title="接口请求平均耗时"
-                                        formatter={value => <>{value} ms</>}
-                                        value={753}
-                                        valueStyle={{ fontWeight: 'bold' }}
-                                    />
-                                </Card>
-                            </Col>
-                            <Col xs={24} md={8}>
-                                <Card loading={requestListLoading} className="flex-1">
-                                    <Statistic
-                                        title="接口请求成功率"
-                                        formatter={value => <>{value} %</>}
-                                        value={99.71}
-                                        valueStyle={{ fontWeight: 'bold' }}
-                                    />
-                                </Card>
-                            </Col>
-                        </Row>
-                    </Card>
-                </Col>
-                <Col xs={24} md={12}>
-                    <Card loading={requestListLoading} title='接口请求耗时分段数量占比'>
-                        <ConcentrationDurationDistributionEcharts options={networkOption2} style={{ 'width': '100%', 'height': '550px' }}></ConcentrationDurationDistributionEcharts>
-                    </Card>
-                </Col>
-                <Col xs={24} md={12}>
-                    <Card loading={requestListLoading} title='接口请求耗时Top 10'>
-                        <Table
-                            className="overflow-x-auto"
-                            dataSource={rawData2}
-                            columns={columns2}
-                            rowKey="url"
-                            pagination={false}
-                        />
-                    </Card>
-                </Col>
-            </Row>
-        </>
-    )
-}
-
-export default PerformanceShow;

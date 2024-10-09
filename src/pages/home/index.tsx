@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Card, Row, Col } from 'antd';
+import { Typography, Card, Row, Col, Flex } from 'antd';
 import { useNavigate } from 'react-router-dom'
 import FlipButton from '@/components/flip_button/index'
 import useInView from '@/hooks/useInView'
+import DescriptionComputer from '@/components/description_computer';
+import { E_Describe_Title } from '@/components/description_computer/type';
 
 const { Title, Paragraph } = Typography;
 
@@ -39,9 +41,16 @@ const Home: React.FC = () => {
                         </Card>
                     </Col>
                     <Col xs={24} sm={12} md={8}>
-                        <Card loading={pageLoading} className="text-center my-2">
-                            <Title level={2}>5</Title>
-                            <Paragraph>警报数</Paragraph>
+                        <Card loading={pageLoading} className="my-2">
+                            <Flex align='center' vertical>
+                                <Title level={2}>5</Title>
+                                <Paragraph>
+                                    <Flex gap={6}>
+                                        <span>警报数</span>
+                                        <DescriptionComputer title={E_Describe_Title.警报数}></DescriptionComputer>
+                                    </Flex>
+                                </Paragraph>
+                            </Flex>
                         </Card>
                     </Col>
                     <Col xs={24} sm={12} md={8}>

@@ -1,8 +1,10 @@
-import { Button, Card, Collapse, message, Table, DatePicker, Select } from "antd";
+import { Button, Card, Collapse, message, Table, DatePicker, Select, Flex } from "antd";
 import { data } from "./mockData"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { E_TrackerDetailType } from "@/main";
+import DescriptionComputer from "@/components/description_computer";
+import { E_Describe_Title } from "@/components/description_computer/type";
 
 const { Panel } = Collapse;
 
@@ -29,7 +31,8 @@ const SystemError = () => {
     const columns = [
         { title: "uuid", dataIndex: "uuid", key: "uuid" },
         { title: "发生时间", dataIndex: "timestamp", key: "timestamp" },
-        { title: "状态", dataIndex: "status", key: "status" },
+        { title: "处理状态", dataIndex: "status", key: "status" },
+        { title: "隐私状态", dataIndex: "disclose", key: "disclose" },
         { title: "错误类型", dataIndex: "type", key: "type", render: (text: E_TrackerDetailType) => E_TrackerDetailType[text] || "" },
         {
             title: "操作",
@@ -48,6 +51,16 @@ const SystemError = () => {
                         onClick={() => navigator(`/index/system_error_detail_rrwebUrl/${String(record.rrwebUrl).replace(/\//g, '_')}`)}
                     >
                         查看回放
+                    </Button>
+                    <Button
+                        type="link"
+                    >
+                        回放是否私密
+                    </Button>
+                    <Button
+                        type="link"
+                    >
+                        修改处理状态
                     </Button>
                 </>
             ),
@@ -77,7 +90,12 @@ const SystemError = () => {
                     </Panel>
                 </Collapse>
             </Card>
-            <Card>
+            <Card title={
+                <Flex gap={6}>
+                    <span>系统错误列表</span>
+                    <DescriptionComputer title={E_Describe_Title.系统错误列表}></DescriptionComputer>
+                </Flex>
+            }>
                 <Table className="overflow-x-auto" dataSource={data} columns={columns} pagination={{
                     pageSize: 5,
                     total: data.length,

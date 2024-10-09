@@ -301,6 +301,7 @@ export const data = [
             }
         ],
         "status": '未处理',
+        "disclose": '公开',
         "rrwebUrl": "center/24a7a03d700e4a829778c781dcf90743.txt"
     },
     {
@@ -593,6 +594,7 @@ export const data = [
             }
         ],
         "status": '未处理',
+        "disclose": '公开',
         "rrwebUrl": "center/d79f94cf246a45158ad24b794fa971cb.txt"
     },
     {
@@ -789,6 +791,7 @@ export const data = [
             }
         ],
         "status": '未处理',
+        "disclose": '公开',
         "rrwebUrl": "center/652500df207c4245a6b34715e04db7d1.txt"
     },
     {
@@ -973,6 +976,7 @@ export const data = [
             }
         ],
         "status": '未处理',
+        "disclose": '公开',
         "rrwebUrl": "center/da98ddad9d7a49abbfd63421ca62dad4.txt"
     },
     {
@@ -1145,6 +1149,7 @@ export const data = [
             }
         ],
         "status": '未处理',
+        "disclose": '公开',
         "rrwebUrl": "center/a78ce2f3d08b40049bc61b9b84e8ff2e.txt"
     },
     {
@@ -1311,6 +1316,7 @@ export const data = [
             }
         ],
         "status": '未处理',
+        "disclose": '公开',
         "rrwebUrl": "center/142a0f1163954ec9b5babae89691bc97.txt"
     },
     {
@@ -1453,6 +1459,7 @@ export const data = [
             }
         ],
         "status": '未处理',
+        "disclose": '公开',
         "rrwebUrl": "center/b7e3f55e7ff0401bb5149560e3918f76.txt"
     },
     {
@@ -1583,6 +1590,7 @@ export const data = [
             }
         ],
         "status": '未处理',
+        "disclose": '公开',
         "rrwebUrl": "center/c6a8a94ed7f646058e8efe750afcf060.txt"
     },
     {
@@ -1707,6 +1715,7 @@ export const data = [
             }
         ],
         "status": '已处理',
+        "disclose": '公开',
         "rrwebUrl": "center/32c1d6ca0e5d47f183a2f8c9edc68b51.txt"
     },
     {
@@ -1819,6 +1828,7 @@ export const data = [
             }
         ],
         "status": '未处理',
+        "disclose": '公开',
         "rrwebUrl": "center/64e0dfaac556466387a6f5a70da54572.txt"
     },
     {
@@ -1919,6 +1929,7 @@ export const data = [
             }
         ],
         "status": '未处理',
+        "disclose": '公开',
         "rrwebUrl": "center/38d0ab82a2e946ae95b74ae5266fafbd.txt"
     }
 ]
